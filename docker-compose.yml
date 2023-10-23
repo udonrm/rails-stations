@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   db:
     build:
@@ -16,6 +16,8 @@ services:
       - rails-railway-stations-volume:/var/lib/mysql
 
   web:
+    environment:
+      - NODE_OPTIONS=--openssl-legacy-provider
     build:
       context: .
       dockerfile: ./infra/web/Dockerfile
