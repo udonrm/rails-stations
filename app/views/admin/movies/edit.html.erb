@@ -22,3 +22,5 @@
     <%= f.text_field :image_url %>
     <%= f.submit "更新" %>
 <% end %>
+
+<%= link_to "削除", admin_movie_path(@movie), method: :delete, "data-confirm" => "本当に削除しますか？"%>
