@@ -12,4 +12,5 @@ class Movie < ApplicationRecord
           []
         end
     end
+    
 end

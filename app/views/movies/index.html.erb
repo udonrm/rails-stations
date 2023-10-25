@@ -8,7 +8,7 @@
   <%= f.radio_button :is_showing, 'false', checked: params[:is_showing] == 'false' %>
   <%= f.label :is_showing_false, "公開予定" %>
 
-  <%= f.text_field :name, value: params[:name]%>
+  <%= f.text_field :keyword, value: params[:keyword]%>
   <%= f.submit '検索'%>
 <% end %>
 
@@ -36,7 +36,7 @@
                 <% if movie.is_showing %>
                     上映中
                 <% else %>
-                    公開停止中
+                    公開予定
                 <% end %>
             </td>
             <td><%= movie.description %></td>
