@@ -2,11 +2,11 @@
   <%= f.radio_button :is_showing, 'all', checked: params[:is_showing] == 'all' || params[:is_showing].nil? %>
   <%= f.label :is_showing_all, "全て" %>
 
-  <%= f.radio_button :is_showing, 'true', checked: params[:is_showing] == 'true' %>
-  <%= f.label :is_showing_true, "公開中" %>
+  <%= f.radio_button :is_showing, '1', checked: params[:is_showing] == '1' %>
+  <%= f.label :is_showing_1, "公開中" %>
 
-  <%= f.radio_button :is_showing, 'false', checked: params[:is_showing] == 'false' %>
-  <%= f.label :is_showing_false, "公開予定" %>
+  <%= f.radio_button :is_showing, '0', checked: params[:is_showing] == '0' %>
+  <%= f.label :is_showing_0, "公開予定" %>
 
   <%= f.text_field :keyword, value: params[:keyword]%>
   <%= f.submit '検索'%>

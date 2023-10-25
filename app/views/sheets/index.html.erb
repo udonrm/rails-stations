@@ -1,0 +1,43 @@
+<div class="container text-center vh-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-8">
+            <h1 class = "text-light bg-dark">スクリーン</h1>
+            <table class = "table mt-5">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">1</th>
+                        <th scope="col">2</th>
+                        <th scope="col">3</th>
+                        <th scope="col">4</th>
+                        <th scope="col">5</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <th scope="row">A</th>
+                            <% @lineA_sheets.each do |sheet|%>
+                                <td><%= sheet.id %></td>
+                            <% end %>
+                            <th>A</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">B</th>
+                            <% @lineB_sheets.each do |sheet|%>
+                                <td><%= sheet.id %></td>
+                            <% end %>
+                            <th>B</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">C</th>
+                            <% @lineC_sheets.each do |sheet|%>
+                                <td><%= sheet.id %></td>
+                            <% end %>
+                            <th>C</th>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

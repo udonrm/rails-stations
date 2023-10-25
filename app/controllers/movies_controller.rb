@@ -8,9 +8,9 @@ class MoviesController < ApplicationController
         end
 
         # 公開中または公開予定の絞り込み
-        if params[:is_showing] == 'true'
+        if params[:is_showing] == '1'
             @movies = @movies.where(is_showing: true)
-        elsif params[:is_showing] == 'false'
+        elsif params[:is_showing] == '0'
             @movies = @movies.where(is_showing: false)
         end
         

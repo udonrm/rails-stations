@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   end
 
   resources :movies, only: [:index]
+  resources :sheets, only: [:index]
 end
