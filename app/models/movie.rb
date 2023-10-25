@@ -7,7 +7,7 @@ class Movie < ApplicationRecord
 
     def self.looks(search)
         if search
-          self.where("name LIKE ?", "%#{search}%").where("description LIKE ?", "%#{search}%")
+          self.where("name LIKE ?", "%#{search}%").or("description LIKE ?", "%#{search}%")
         else
           []
         end
