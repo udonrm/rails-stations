@@ -15,27 +15,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <% @sheets.each do |row, sheets| %>
                         <tr>
-                            <th scope="row">A</th>
-                            <% @lineA_sheets.each do |sheet|%>
-                                <td><%= sheet.id %></td>
+                            <th scope="row"><%= row.upcase %></th>
+                            <% sheets.each do |sheet| %>
+                                <td><%= "#{row}-#{sheet.column}" %></td>
                             <% end %>
-                            <th>A</th>
+                            <th><%= row.upcase %></th>
                         </tr>
-                        <tr>
-                            <th scope="row">B</th>
-                            <% @lineB_sheets.each do |sheet|%>
-                                <td><%= sheet.id %></td>
-                            <% end %>
-                            <th>B</th>
-                        </tr>
-                        <tr>
-                            <th scope="row">C</th>
-                            <% @lineC_sheets.each do |sheet|%>
-                                <td><%= sheet.id %></td>
-                            <% end %>
-                            <th>C</th>
-                        </tr>
+                    <% end %>
                 </tbody>
             </table>
         </div>
