@@ -5,6 +5,8 @@ class Movie < ApplicationRecord
     validates :image_url, presence: true
     validates :is_showing, presence: true
 
+    has_many :schedules
+
     def self.looks(search)
         if search
           self.where("name LIKE ?", "%#{search}%").or(self.where("description LIKE ?", "%#{search}%"))
