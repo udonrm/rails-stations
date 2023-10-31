@@ -40,7 +40,7 @@
                 <% end %>
             </td>
             <td><%= movie.description %></td>
-            <td><%= movie.image_url %></td>
+            <td><%= image_tag movie.image_url, size: "100x100" %></td>
             <td><%= movie.created_at %></td>
             <td><%= movie.updated_at %></td>
         </tr>

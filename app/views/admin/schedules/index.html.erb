@@ -1,0 +1,25 @@
+<h1>上映一覧</h1>
+<table class ="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>映画名</th>
+            <th>開始時間</th>
+            <th>終了時間</th>
+            <th>作成日時</th>
+            <th>更新日時</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @schedules.each do |schedule| %>
+        <tr>
+            <td><%= schedule.id %></td>
+            <td><%= link_to schedule.movie.name, edit_admin_schedule_path(schedule) %></td>
+            <td><%= schedule.start_time %></td>
+            <td><%= schedule.end_time %></td>
+            <td><%= schedule.created_at %></td>
+            <td><%= schedule.updated_at %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
