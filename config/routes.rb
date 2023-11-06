@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     resources :schedules, except: [:new, :create]
   end
 
-  resources :movies, only: [:index, :show]
+  resources :movies, only: [:index, :show] do
+    get 'reservation' => 'movies#reservation'
+    get 'schedules/:schedule_id/reservations/new' => 'reservations#new', as: 'sheet_reservation'
+  end
+
+  post 'reservations' => 'reservations#create'
+
   resources :sheets, only: [:index]
 end

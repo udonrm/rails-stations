@@ -1,6 +1,7 @@
 <div class="container text-center vh-100">
     <div class="row justify-content-center align-items-center h-100">
         <div class="col-8">
+            <%= flash[:notice] %>
             <h1 class = "text-light bg-dark">スクリーン</h1>
             <table class = "table mt-5">
                 <thead>
@@ -15,15 +16,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%# rowとsheetsはキーと値の関係 %>
-                    <% @sheets.each do |row, sheets| %>
-                        <tr>
-                            <th scope="row"><%= row.upcase %></th>
-                            <% sheets.each do |sheet| %>
-                                <td><%= "#{row}-#{sheet.column}" %></td>
-                            <% end %>
-                            <th><%= row.upcase %></th>
-                        </tr>
+                    <% grouped_sheets = @sheets.group_by(&:row) %>
+                    <% grouped_sheets.each do |row, sheets| %>
+                    <tr>
+                        <th scope="row"><%= row.upcase %></th>
+                        <% sheets.each do |sheet| %>
+                            <td><%= link_to "#{sheet.row}-#{sheet.column}", movie_sheet_reservation_path(@movie, @schedule, date: @date, sheet_id: sheet.id ) %></td>
+                        <% end %>
+                        <th><%= row.upcase %></th>
+                    </tr>
                     <% end %>
                 </tbody>
             </table>
