@@ -40,8 +40,8 @@
                     <tbody>
                         <% @schedules.each do |schedule|%>
                         <tr>
-                            <td><%= schedule.start_time.strftime("%Y-%m-%d %H:%M:%S") %></td>
-                            <td><%= schedule.end_time.strftime("%Y-%m-%d %H:%M:%S") %></td>
+                            <td><%= schedule.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+                            <td><%= schedule.end_time.strftime("%Y-%m-%d %H:%M") %></td>
                             <td><%= link_to '編集', edit_admin_schedule_path(schedule) %></td>
                         </tr>
                         <% end %>   

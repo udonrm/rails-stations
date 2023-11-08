@@ -14,8 +14,9 @@ class ReservationsController < ApplicationController
 
     def create
         @reservation = Reservation.new(reservation_params)
+        @reserved_sheet =  Reservation.find_by(date: params[:reservation][:date], schedule_id: params[:reservation][:schedule_id], sheet_id: params[:reservation][:sheet_id])
 
-        if Reservation.find_by(schedule_id: params[:reservation][:schedule_id], sheet_id: params[:reservation][:sheet_id])
+        if @reserved_sheet
             flash[:notice] = 'その座席はすでに予約済みです'
             redirect_to movie_reservation_path(@reservation.schedule.movie, schedule_id: params[:reservation][:schedule_id], date: params[:reservation][:date])
             return

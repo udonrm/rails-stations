@@ -27,9 +27,9 @@ class MoviesController < ApplicationController
         if !params[:date] || !params[:schedule_id]
             redirect_to movie_path(@movie) and return
         end
-
-        @sheets = Sheet.order(:row, :column)
+        
         @schedule = Schedule.find(params[:schedule_id]) 
+        @sheets = Sheet.order(:row, :column)
         @date = params[:date]
     end
 end
