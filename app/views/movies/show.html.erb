@@ -29,7 +29,7 @@
                 <%= f.label :date, "日付", class: "form-label"%>
                 <%= f.date_field :date, min: Date.today, max: Date.today + 6.days, class: "form-control" %>
                 <%= f.label :time, "時刻", class: "form-label"%>
-                <%= f.select :schedule_id, options_from_collection_for_select(@schedules, :id, :display_time), class: "form-control" %>
+                <%= f.select :schedule_id, options_from_collection_for_select(@schedules, :id, :display_time), {}, class: "form-control" %>
                 <%= button_tag '座席を予約する', class: "btn btn-primary", type: "submit" %>
             <% end %>
         </div>

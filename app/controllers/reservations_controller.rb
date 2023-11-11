@@ -14,17 +14,18 @@ class ReservationsController < ApplicationController
 
     def create
         @reservation = Reservation.new(reservation_params)
+        @movie = Movie.find(params[:reservation][:movie_id])
         @reserved_sheet =  Reservation.find_by(date: params[:reservation][:date], schedule_id: params[:reservation][:schedule_id], sheet_id: params[:reservation][:sheet_id])
 
         if @reserved_sheet
             flash[:notice] = 'その座席はすでに予約済みです'
-            redirect_to movie_reservation_path(@reservation.schedule.movie, schedule_id: params[:reservation][:schedule_id], date: params[:reservation][:date])
+            redirect_to movie_reservation_path(@movie, schedule_id: params[:reservation][:schedule_id], date: params[:reservation][:date])
             return
         end
 
         if @reservation.save
             flash[:success] = '予約が完了しました'
-            redirect_to movie_path(@reservation.schedule.movie)
+            redirect_to movie_path(@movie)
         else
             render :new
         end
@@ -32,6 +33,6 @@ class ReservationsController < ApplicationController
 
     private
     def reservation_params
-        params.require(:reservation).permit(:date, :sheet_id, :schedule_id, :email, :name)
+        params.require(:reservation).permit(:date, :sheet_id, :schedule_id, :email, :name, :movie_id)
     end
 end

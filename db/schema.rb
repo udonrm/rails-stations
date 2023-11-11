@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2023_10_31_053236) do
   end
 
   create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "movie_id", null: false
     t.date "date", null: false
     t.bigint "schedule_id", null: false
     t.bigint "sheet_id", null: false
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 2023_10_31_053236) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["date", "schedule_id", "sheet_id"], name: "index_reservations_on_date_and_schedule_id_and_sheet_id", unique: true
+    t.index ["movie_id"], name: "index_reservations_on_movie_id"
     t.index ["schedule_id"], name: "index_reservations_on_schedule_id"
     t.index ["sheet_id"], name: "index_reservations_on_sheet_id"
   end
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 2023_10_31_053236) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "reservations", "movies"
   add_foreign_key "reservations", "schedules"
   add_foreign_key "reservations", "sheets"
   add_foreign_key "schedules", "movies"

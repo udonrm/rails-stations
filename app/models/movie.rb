@@ -6,6 +6,7 @@ class Movie < ApplicationRecord
     validates :is_showing, presence: true
 
     has_many :schedules
+    has_many :reservations
 
     def self.looks(search)
         if search

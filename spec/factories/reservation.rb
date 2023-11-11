@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :reservation do
+    association :movie, factory: :movie
     association :schedule, factory: :schedule
     association :sheet, factory: :sheet
     sequence(:name) { |n| "TEST_USER#{n}" }

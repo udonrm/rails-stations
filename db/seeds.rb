@@ -20,3 +20,10 @@ sheets.each do |sheet|
     )
 end
 
+Movie.create(
+  name: 'ワンピース',
+  year: '2015',
+  description: '面白い',
+  is_showing: true,
+  image_url: 'https://1.bp.blogspot.com/-tVeC6En4e_E/X96mhDTzJNI/AAAAAAABdBo/jlD_jvZvMuk3qUcNjA_XORrA4w3lhPkdQCNcBGAsYHQ/s400/onepiece01_luffy.png'
+)
