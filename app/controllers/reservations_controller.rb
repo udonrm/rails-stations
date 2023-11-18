@@ -1,4 +1,6 @@
 class ReservationsController < ApplicationController
+    before_action :login_check, only: [:new]
+
     def new
         @reservation = Reservation.new
         @movie = Movie.find_by(id: params[:movie_id])
@@ -33,6 +35,13 @@ class ReservationsController < ApplicationController
 
     private
     def reservation_params
-        params.require(:reservation).permit(:date, :sheet_id, :schedule_id, :email, :name, :movie_id)
+        params.require(:reservation).permit(:date, :sheet_id, :schedule_id, :email, :name, :movie_id, :user_id)
+    end
+
+    def login_check
+        if !user_signed_in?
+            redirect_to movies_path
+            flash[:alert] = 'ログインが必要です'
+        end
     end
 end

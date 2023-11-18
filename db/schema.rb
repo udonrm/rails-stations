@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2023_10_31_053236) do
 
   create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "movie_id", null: false
+    t.bigint "user_id", null: false
     t.date "date", null: false
     t.bigint "schedule_id", null: false
     t.bigint "sheet_id", null: false
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 2023_10_31_053236) do
     t.index ["movie_id"], name: "index_reservations_on_movie_id"
     t.index ["schedule_id"], name: "index_reservations_on_schedule_id"
     t.index ["sheet_id"], name: "index_reservations_on_sheet_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -62,9 +64,23 @@ ActiveRecord::Schema.define(version: 2023_10_31_053236) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "movies", "screens"
   add_foreign_key "reservations", "movies"
   add_foreign_key "reservations", "schedules"
   add_foreign_key "reservations", "sheets"
+  add_foreign_key "reservations", "users"
   add_foreign_key "schedules", "movies"
 end
