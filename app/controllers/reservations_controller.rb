@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
     def new
         @reservation = Reservation.new
-        @movie = Movie.find(params[:movie_id])
+        @movie = Movie.find_by(id: params[:movie_id])
         @date = params[:date]
         @sheet = params[:sheet_id]
         @schedule = params[:schedule_id]

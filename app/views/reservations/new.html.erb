@@ -4,9 +4,11 @@
         <%= flash[:alert]%>
         <h1>ご予約ページ</h1>
         <%= form_with model: @reservation, url: reservations_path do |f| %>
-            <%= f.label :movie_id, "選択中の映画", class: "form-label" %>
-            <%= f.text_field :movie_id, value: @movie.name, class: "form-control text-center", readonly: true%>
-            <%= f.hidden_field :movie_id, value: @movie.id %>
+            <% if !@movie.nil? %>
+                <%= f.label :movie_id, "選択中の映画", class: "form-label" %>
+                <%= f.text_field :movie_id, value: @movie.name, class: "form-control text-center", readonly: true%>
+                <%= f.hidden_field :movie_id, value: @movie.id %>
+            <% end %>
 
             <%= f.label :date, "選択中の日時", class: "form-label" %>
             <%= f.text_field :date, value: @date, class: "form-control text-center", readonly: true%>

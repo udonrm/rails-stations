@@ -1,25 +1,35 @@
-<% if @movie.errors.any? %>
-<ul>
-    <% @movie.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-</ul>
-<% end %>
+<div class="container text-center mt-5">
+    <div class="row justify-content-center">
+        <div class = "col-4">
+            <% if @movie.errors.any? %>
+            <ul>
+                <% @movie.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+            </ul>
+            <% end %>
 
-<%= form_with model: [:admin, @movie] do |f| %>
-    <%= f.label :name, "映画タイトル" %>
-    <%= f.text_field :name %>
+            <%= form_with model: [:admin, @movie] do |f| %>
+                <%= f.label :screen_id, "スクリーン番号", class: 'form-label' %>
+                <%= f.select :screen_id, options_from_collection_for_select(@screens, :id, :screen_number), {}, class: 'form-select text-center' %>
 
-    <%= f.label :year, "公開年" %>
-    <%= f.text_field :year %>
+                <%= f.label :name, "映画タイトル", class: 'form-label' %>
+                <%= f.text_field :name, class: 'form-control text-center' %>
 
-    <%= f.label :is_showing, "上映中か" %>
-    <%= f.select :is_showing, [["上映中", true], ["上映予定", false]]%>
+                <%= f.label :year, "公開年", class: 'form-label' %>
+                <%= f.text_field :year, class: 'form-control text-center' %>
 
-    <%= f.label :description, "概要" %>
-    <%= f.text_area :description %>
+                <%= f.label :is_showing, "上映中か", class: 'form-label' %>
+                <%= f.select :is_showing, [["上映中", true], ["上映予定", false]], {}, class: 'form-select text-center'%>
 
-    <%= f.label :image_url, "画像URL" %>
-    <%= f.text_field :image_url %>
-    <%= f.submit "作成" %>
-<% end %>
+                <%= f.label :description, "概要", class: 'form-label' %>
+                <%= f.text_area :description, class: 'form-control text-center' %>
+
+                <%= f.label :image_url, "画像URL", class: 'form-label' %>
+                <%= f.text_field :image_url, class: 'form-control text-center' %>
+
+                <%= f.submit "作成", class: 'btn btn-primary mt-4' %>
+            <% end %>
+        </div>
+    </div>
+</div>

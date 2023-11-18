@@ -10,10 +10,12 @@ class Admin::MoviesController < ApplicationController
 
     def new
         @movie = Movie.new
+        @screens = Screen.all
     end
 
     def create
         @movie = Movie.new(movie_params)
+        @screens = Screen.all
         if @movie.save
             redirect_to admin_movies_path
         else
@@ -42,6 +44,6 @@ class Admin::MoviesController < ApplicationController
 
     private
     def movie_params
-        params.require(:movie).permit(:name, :year, :description, :image_url, :is_showing)
+        params.require(:movie).permit(:screen_id, :name, :year, :description, :image_url, :is_showing)
     end
 end

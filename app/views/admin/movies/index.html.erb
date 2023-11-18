@@ -1,41 +1,51 @@
-<table class = "table">
-    <thead>
-        <tr class = "table-primary">
-            <th>ID</th>
-            <th>映画タイトル</th>
-            <th>公開年</th>
-            <th>上映中か</th>
-            <th>概要</th>
-            <th>画像URL</th>
-            <th>スケジュール</th>
-            <th>作成日時</th>
-            <th>更新日時</th>
-            <th></th>
-        </tr>
-    </thead>
-    <% @movies.each do |movie| %>
-        <tr>
-            <td><%= movie.id %></td>
-            <td><%= link_to movie.name, admin_movie_path(movie)%></td>
-            <td><%= movie.year %></td>
-            <td>
-                <% if movie.is_showing %>
-                    上映中
-                <% else %>
-                    上映予定
+<div class="container text-center mt-5">
+    <div class="row justify-content-center">
+        <p class="fs-2 fw-bold">映画一覧</p>
+        <div class = "col-4">
+            <%= link_to '新規作成', new_admin_movie_path, class: 'btn btn-primary mb-4'%>
+        </div>
+            <table class = "table">
+                <thead>
+                    <tr class = "table-primary">
+                        <th>ID</th>
+                        <th>映画タイトル</th>
+                        <th>公開年</th>
+                        <th>上映中か</th>
+                        <th>概要</th>
+                        <th>画像URL</th>
+                        <th>スケジュール</th>
+                        <th>スクリーン</th>
+                        <th>作成日時</th>
+                        <th>更新日時</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <% @movies.each do |movie| %>
+                    <tr>
+                        <td><%= movie.id %></td>
+                        <td><%= link_to movie.name, admin_movie_path(movie)%></td>
+                        <td><%= movie.year %></td>
+                        <td>
+                            <% if movie.is_showing %>
+                                上映中
+                            <% else %>
+                                上映予定
+                            <% end %>
+                        </td>
+                        <td><%= safe_join(movie.description.split("\n"),tag(:br)) %></td>
+                        <td><%= image_tag movie.image_url, size: "100x100" %></td>
+                        <td>
+                            <% movie.schedules.each do |schedule|%>
+                                <%= "上映開始時刻:#{schedule.start_time.strftime("%Y-%m-%d %H:%M:%S")}" %>
+                                <%= "上映終了時刻:#{schedule.end_time.strftime("%Y-%m-%d %H:%M:%S")}" %><br>
+                            <% end %>
+                        </td>
+                        <td><%= movie.screen_id %></td>
+                        <td><%= movie.created_at %></td>
+                        <td><%= movie.updated_at %></td>
+                        <td><%= link_to '編集', edit_admin_movie_path(movie) %></td>
+                    </tr>
                 <% end %>
-            </td>
-            <td><%= safe_join(movie.description.split("\n"),tag(:br)) %></td>
-            <td><%= image_tag movie.image_url, size: "100x100" %></td>
-            <td>
-                <% movie.schedules.each do |schedule|%>
-                    <%= "上映開始時刻:#{schedule.start_time.strftime("%Y-%m-%d %H:%M:%S")}" %>
-                    <%= "上映終了時刻:#{schedule.end_time.strftime("%Y-%m-%d %H:%M:%S")}" %><br>
-                <% end %>
-            </td>
-            <td><%= movie.created_at %></td>
-            <td><%= movie.updated_at %></td>
-            <td><%= link_to '編集', edit_admin_movie_path(movie) %></td>
-        </tr>
-    <% end %>
-</table>
+            </table>
+    </div>
+</div>

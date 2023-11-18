@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 2023_10_31_053236) do
     t.text "description", comment: "映画の説明文"
     t.string "image_url", limit: 150, comment: "映画のポスター画像が格納されているURL"
     t.boolean "is_showing", null: false, comment: "上映中かどうか"
+    t.bigint "screen_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_movies_on_name"
+    t.index ["screen_id"], name: "index_movies_on_screen_id"
   end
 
   create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -47,6 +49,12 @@ ActiveRecord::Schema.define(version: 2023_10_31_053236) do
     t.index ["movie_id"], name: "index_schedules_on_movie_id"
   end
 
+  create_table "screens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "screen_number", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "sheets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "column", limit: 1, null: false
     t.string "row", limit: 1, null: false
@@ -54,6 +62,7 @@ ActiveRecord::Schema.define(version: 2023_10_31_053236) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "movies", "screens"
   add_foreign_key "reservations", "movies"
   add_foreign_key "reservations", "schedules"
   add_foreign_key "reservations", "sheets"

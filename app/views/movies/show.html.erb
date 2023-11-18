@@ -27,10 +27,10 @@
         <div class ="col-8 mt-5">
             <%= form_with url: movie_reservation_path(@movie), method: :get do |f| %>
                 <%= f.label :date, "日付", class: "form-label"%>
-                <%= f.date_field :date, min: Date.today, max: Date.today + 6.days, class: "form-control" %>
+                <%= f.date_field :date, min: Date.today, max: Date.today + 6.days, class: "form-control text-center" %>
                 <%= f.label :time, "時刻", class: "form-label"%>
-                <%= f.select :schedule_id, options_from_collection_for_select(@schedules, :id, :display_time), {}, class: "form-control" %>
-                <%= button_tag '座席を予約する', class: "btn btn-primary", type: "submit" %>
+                <%= f.select :schedule_id, options_from_collection_for_select(@schedules, :id, :display_time), {}, class: "form-control text-center" %>
+                <%= button_tag '座席を予約する', class: "btn btn-primary mt-3", type: "submit" %>
             <% end %>
         </div>
 
