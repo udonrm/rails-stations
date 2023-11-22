@@ -1,47 +1,55 @@
 class ReservationsController < ApplicationController
-    before_action :login_check, only: [:new]
+  before_action :login_check, only: [:new]
 
-    def new
-        @reservation = Reservation.new
-        @movie = Movie.find_by(id: params[:movie_id])
-        @date = params[:date]
-        @sheet = params[:sheet_id]
-        @schedule = params[:schedule_id]
-        
-        if !@date || !@sheet
-            flash.now[:alert] = '必要なパラメータがありません。'
-            render :new, status: :bad_request
-        end
+  def new
+    @reservation = Reservation.new
+    @movie = Movie.find_by(id: params[:movie_id])
+    @date = params[:date]
+    @sheet = params[:sheet_id]
+    @schedule = params[:schedule_id]
+
+    unless @movie
+      flash.now[:alert] = '映画が選択されていません'
+      redirect_to movies_path, status: :bad_request
     end
 
-    def create
-        @reservation = Reservation.new(reservation_params)
-        @movie = Movie.find(params[:reservation][:movie_id])
-        @reserved_sheet =  Reservation.find_by(date: params[:reservation][:date], schedule_id: params[:reservation][:schedule_id], sheet_id: params[:reservation][:sheet_id])
+    if !@date || !@sheet
+      flash.now[:alert] = '必要なパラメータがありません。'
+      render :new, status: :bad_request
+    end
+  end
 
-        if @reserved_sheet
-            flash[:notice] = 'その座席はすでに予約済みです'
-            redirect_to movie_reservation_path(@movie, schedule_id: params[:reservation][:schedule_id], date: params[:reservation][:date])
-            return
-        end
+  def create
+    @reservation = Reservation.new(reservation_params)
+    @movie = Movie.find(params[:reservation][:movie_id])
+    @reserved_sheet = Reservation.find_by(date: params[:reservation][:date],
+                                          schedule_id: params[:reservation][:schedule_id], sheet_id: params[:reservation][:sheet_id])
 
-        if @reservation.save
-            flash[:success] = '予約が完了しました'
-            redirect_to movie_path(@movie)
-        else
-            render :new
-        end
+    if @reserved_sheet
+      flash[:notice] = 'その座席はすでに予約済みです'
+      redirect_to movie_reservation_path(@movie, schedule_id: params[:reservation][:schedule_id],
+                                                 date: params[:reservation][:date])
+      return
     end
 
-    private
-    def reservation_params
-        params.require(:reservation).permit(:date, :sheet_id, :schedule_id, :email, :name, :movie_id, :user_id)
+    if @reservation.save
+      flash[:success] = '予約が完了しました'
+      redirect_to movie_path(@movie)
+    else
+      render :new
     end
+  end
 
-    def login_check
-        if !user_signed_in?
-            redirect_to movies_path
-            flash[:alert] = 'ログインが必要です'
-        end
-    end
+  private
+
+  def reservation_params
+    params.require(:reservation).permit(:date, :sheet_id, :schedule_id, :email, :name, :movie_id, :user_id)
+  end
+
+  def login_check
+    return if user_signed_in?
+
+    redirect_to movies_path
+    flash[:alert] = 'ログインが必要です'
+  end
 end

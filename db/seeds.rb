@@ -13,13 +13,16 @@ sheets = [
 ]
 
 sheets.each do |sheet|
-    Sheet.create!(
-        id: sheet[0],
-        column: sheet[1],
-        row: sheet[2]
-    )
+  Sheet.create!(
+    id: sheet[0],
+    column: sheet[1],
+    row: sheet[2]
+  )
 end
 
-(1..3).each do |number|
-  Screen.find_or_create_by!(screen_number: number)
-end
+# (1..3).each do |number|
+#   Screen.find_or_create_by!(
+#     screen_number: number
+
+#   )
+# end

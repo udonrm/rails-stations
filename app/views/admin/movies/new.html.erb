@@ -10,6 +10,9 @@
             <% end %>
 
             <%= form_with model: [:admin, @movie] do |f| %>
+                <%= f.label :theater_id, "劇場番号", class: 'form-label' %>
+                <%= f.select :theater_id, options_from_collection_for_select(@theaters, :id, :theater_number), {}, class: 'form-select text-center' %>
+
                 <%= f.label :screen_id, "スクリーン番号", class: 'form-label' %>
                 <%= f.select :screen_id, options_from_collection_for_select(@screens, :id, :screen_number), {}, class: 'form-select text-center' %>
 

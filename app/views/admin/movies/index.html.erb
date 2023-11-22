@@ -14,6 +14,7 @@
                         <th>概要</th>
                         <th>画像URL</th>
                         <th>スケジュール</th>
+                        <th>劇場</th>
                         <th>スクリーン</th>
                         <th>作成日時</th>
                         <th>更新日時</th>
@@ -40,6 +41,7 @@
                                 <%= "上映終了時刻:#{schedule.end_time.strftime("%Y-%m-%d %H:%M:%S")}" %><br>
                             <% end %>
                         </td>
+                        <td><%=  movie.theater_id %></td>
                         <td><%= movie.screen_id %></td>
                         <td><%= movie.created_at %></td>
                         <td><%= movie.updated_at %></td>

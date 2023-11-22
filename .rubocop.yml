@@ -1,0 +1,13 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  SuggestExtensions: false
+  NewCops: enable
+  DisplayCopNames: true
+  Exclude:
+    - "Gemfile"
+    - "spec/*"
+    - "spec/factories/*"
+    - "bin/**/*"
+    - "config/environments/*"
+    - "config/puma.rb"
