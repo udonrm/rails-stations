@@ -7,6 +7,8 @@ class ReservationsController < ApplicationController
     @date = params[:date]
     @sheet = params[:sheet_id]
     @schedule = params[:schedule_id]
+    @theater = params[:theater_id]
+    @screen = params[:screen_id]
 
     unless @movie
       flash.now[:alert] = '映画が選択されていません'
@@ -43,7 +45,7 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:date, :sheet_id, :schedule_id, :email, :name, :movie_id, :user_id)
+    params.require(:reservation).permit(:date, :sheet_id, :schedule_id, :email, :name, :movie_id, :user_id, :theater_id, :screen_id)
   end
 
   def login_check

@@ -1,4 +1,4 @@
-<div class="container text-center mt-5">
+[<div class="container text-center mt-5">
     <div class="row justify-content-center">
         <h1>上映詳細</h1>
         <div class="col-4">
@@ -30,6 +30,8 @@
                 <%= f.date_field :date, min: Date.today, max: Date.today + 6.days, class: "form-control text-center" %>
                 <%= f.label :time, "時刻", class: "form-label"%>
                 <%= f.select :schedule_id, options_from_collection_for_select(@schedules, :id, :display_time), {}, class: "form-control text-center" %>
+                <%= f.hidden_field :theater_id, value: params[:theater_id] %>
+                <%= f.hidden_field :screen_id, value: params[:screen_id] %>
                 <%= button_tag '座席を予約する', class: "btn btn-primary mt-3", type: "submit" %>
             <% end %>
         </div>

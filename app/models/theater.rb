@@ -1,3 +1,4 @@
 class Theater < ApplicationRecord
-  validates :theater_number, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
+  has_many :screens
 end

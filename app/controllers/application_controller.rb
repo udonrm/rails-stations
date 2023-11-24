@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def respond_with(resource, _opts = {})
     if resource.persisted?
-        sign_in(resource) unless user_signed_in?
+      sign_in(resource) unless user_signed_in?
       redirect_to after_sign_in_path_for(resource), status: 302
     else
       super

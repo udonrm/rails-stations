@@ -10,8 +10,9 @@
             <% end %>
 
             <%= form_with model: [:admin, @movie] do |f| %>
-                <%= f.label :theater_id, "劇場番号", class: 'form-label' %>
-                <%= f.select :theater_id, options_from_collection_for_select(@theaters, :id, :theater_number), {}, class: 'form-select text-center' %>
+                <%= f.label :theater_id, "劇場", class: 'form-label' %>
+                <%= f.hidden_field :theater_id, value: @theater.id %>
+                <%= f.text_field :theater_name, value: @theater.name, class: 'form-control text-center', readonly: true, disabled: true %>
 
                 <%= f.label :screen_id, "スクリーン番号", class: 'form-label' %>
                 <%= f.select :screen_id, options_from_collection_for_select(@screens, :id, :screen_number), {}, class: 'form-select text-center' %>
@@ -33,6 +34,7 @@
 
                 <%= f.submit "作成", class: 'btn btn-primary mt-4' %>
             <% end %>
+            <%= link_to '戻る', admin_movies_path%>
         </div>
     </div>
 </div>

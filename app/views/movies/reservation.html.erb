@@ -23,7 +23,7 @@
                         <% sheets.each do |sheet| %>
                             <td>
                                 <% if !sheet.reservations.find_by(date: params[:date], schedule_id: params[:schedule_id]) %>
-                                    <%= link_to "#{sheet.row}-#{sheet.column}", movie_sheet_reservation_path(@movie, @schedule, date: @date, sheet_id: sheet.id ) %>
+                                    <%= link_to "#{sheet.row}-#{sheet.column}", movie_sheet_reservation_path(@movie, @schedule, date: @date, sheet_id: sheet.id, theater_id: @theater, screen_id: @screen) %>
                                 <% end %>
                             </td>
                         <% end %>

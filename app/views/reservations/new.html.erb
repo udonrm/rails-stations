@@ -12,6 +12,10 @@
 
             <%= f.hidden_field :user_id, value: current_user.id %>
 
+            <%= f.hidden_field :theater_id, value: @theater %>
+
+            <%= f.hidden_field :screen_id, value: @screen %>
+
             <%= f.label :date, "選択中の日時", class: "form-label" %>
             <%= f.text_field :date, value: @date, class: "form-control text-center", readonly: true%>
 

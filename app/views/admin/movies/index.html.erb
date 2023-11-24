@@ -2,9 +2,13 @@
     <div class="row justify-content-center">
         <p class="fs-2 fw-bold">映画一覧</p>
         <div class = "col-4">
-            <%= link_to '新規作成', new_admin_movie_path, class: 'btn btn-primary mb-4'%>
+            <%= form_with url: new_admin_movie_path, method: :get do |f|%>
+                <%= f.label :theater_id, "劇場", class: 'form-label' %>
+                <%= f.select :theater_id, options_from_collection_for_select(@theaters, :id, :name), {}, class: 'form-select text-center' %>
+                <%= f.submit '新規映画登録画面へ', class: 'btn btn-primary mt-3' %>
+            <% end %>
         </div>
-            <table class = "table">
+            <table class = "table mt-3">
                 <thead>
                     <tr class = "table-primary">
                         <th>ID</th>
@@ -41,7 +45,7 @@
                                 <%= "上映終了時刻:#{schedule.end_time.strftime("%Y-%m-%d %H:%M:%S")}" %><br>
                             <% end %>
                         </td>
-                        <td><%=  movie.theater_id %></td>
+                        <td><%=  Theater.find(movie.theater_id).name %></td>
                         <td><%= movie.screen_id %></td>
                         <td><%= movie.created_at %></td>
                         <td><%= movie.updated_at %></td>

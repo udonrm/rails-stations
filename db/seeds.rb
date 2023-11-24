@@ -19,10 +19,3 @@ sheets.each do |sheet|
     row: sheet[2]
   )
 end
-
-# (1..3).each do |number|
-#   Screen.find_or_create_by!(
-#     screen_number: number
-
-#   )
-# end

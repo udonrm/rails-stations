@@ -26,5 +26,7 @@ class MoviesController < ApplicationController
     @schedule = Schedule.find(params[:schedule_id])
     @sheets = Sheet.order(:row, :column)
     @date = params[:date]
+    @theater = params[:theater_id]
+    @screen = params[:screen_id]
   end
 end

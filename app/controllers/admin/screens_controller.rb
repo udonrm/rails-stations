@@ -1,6 +1,7 @@
 class Admin::ScreensController < ApplicationController
   def new
     @screen = Screen.new
+    @theaters = Theater.all
   end
 
   def create
@@ -12,6 +13,6 @@ class Admin::ScreensController < ApplicationController
   private
 
   def screen_params
-    params.require(:screen).permit(:screen_number)
+    params.require(:screen).permit(:screen_number, :theater_id)
   end
 end

@@ -9,9 +9,18 @@ class Admin::TheatersController < ApplicationController
     redirect_to admin_movies_path
   end
 
+  def screens
+    theater = Theater.find(params[:id])
+    screens = theater.screens
+
+    respond_to do |format|
+      format.json { render json: screens }
+    end
+  end
+
   private
 
   def theater_params
-    params.require(:theater).permit(:theater_number)
+    params.require(:theater).permit(:name)
   end
 end

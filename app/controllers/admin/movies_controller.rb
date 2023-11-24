@@ -1,6 +1,7 @@
 class Admin::MoviesController < ApplicationController
   def index
     @movies = Movie.all
+    @theaters = Theater.all
   end
 
   def show
@@ -10,14 +11,18 @@ class Admin::MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
-    @screens = Screen.all
-    @theaters = Theater.all
+    if params[:theater_id].present?
+      @theater = Theater.find(params[:theater_id])
+      @screens = @theater.screens
+    else
+      redirect_to admin_movies_path
+    end
   end
 
   def create
     @movie = Movie.new(movie_params)
-    @theaters = Theater.all
-    @screens = Screen.all
+    @theater = Theater.find(params[:movie][:theater_id])
+    @screens = @theater.screens
     if @movie.save
       redirect_to admin_movies_path
     else
