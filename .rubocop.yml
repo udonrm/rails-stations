@@ -11,3 +11,6 @@ AllCops:
     - "bin/**/*"
     - "config/environments/*"
     - "config/puma.rb"
+
+Layout/TrailingEmptyLines:
+  Enabled: false
