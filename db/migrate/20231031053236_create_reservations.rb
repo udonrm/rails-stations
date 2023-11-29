@@ -3,8 +3,6 @@ class CreateReservations < ActiveRecord::Migration[6.1]
     create_table :reservations do |t|
       t.references :movie, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
-      t.references :theater, foreign_key: true
-      t.references :screen, foreign_key: true
       t.date :date, null: false
       t.references :schedule, null: false, foreign_key: true
       t.references :sheet, null: false, foreign_key: true
@@ -12,6 +10,6 @@ class CreateReservations < ActiveRecord::Migration[6.1]
       t.string :name, null: false, comment: '予約者名'
       t.timestamps
     end
-    add_index :reservations, %i[date schedule_id sheet_id screen_id theater_id], unique: true, name: 'index_reservations_on_date_and_ids'
+    add_index :reservations, %i[date schedule_id sheet_id], unique: true, name: 'index_reservations_on_date_and_ids'
   end
 end

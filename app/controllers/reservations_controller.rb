@@ -35,6 +35,7 @@ class ReservationsController < ApplicationController
     end
 
     if @reservation.save
+      UserMailer.with(reservation: @reservation).reservation_completed_email.deliver_later
       flash[:success] = '予約が完了しました'
       redirect_to movie_path(@movie)
     else
