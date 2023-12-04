@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
         @movie = Movie.find(params[:reservation][:movie_id])
         @screening_time = Schedule.find(params[:reservation][:schedule_id])
         mail(to: @email, subject: '予約完了通知')
-    end 
+    end
 
     def reservation_reminder_email(reservation)
         @theater = reservation.theater

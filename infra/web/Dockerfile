@@ -9,9 +9,11 @@ WORKDIR /app
 # ログインなどの処理を挟む必要があるため。
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
+
+RUN gem install bundler
+RUN bundle install
+
 COPY . /app
-COPY ../../start.sh /start.sh
-RUN chmod +x /start.sh
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh

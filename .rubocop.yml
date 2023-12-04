@@ -11,9 +11,10 @@ AllCops:
     - "bin/**/*"
     - "config/environments/*"
     - "config/puma.rb"
-
-Layout/TrailingEmptyLines:
-  Enabled: false
+    - "db/schema.rb"
 
 Layout/IndentationWidth:
   Enabled: false
+
+Metrics/AbcSize:
+  Max: 40

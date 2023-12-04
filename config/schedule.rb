@@ -24,7 +24,15 @@
 # end
 
 set :output, 'log/cron.log'
+set :environment, "development"
 
-every 1.minutes do
-    rake "reminder:send_email"
+env :PATH, ENV['PATH'] 
+env :GEM_HOME, ENV['GEM_HOME']
+
+every 1.day, at: '7:00 pm' do
+    runner "Reservation.reminder_email"
+end
+
+every 1.day, at: '0:00 am' do
+    runner "Reservation.calculate_ranking"
 end

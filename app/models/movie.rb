@@ -9,6 +9,7 @@ class Movie < ApplicationRecord
 
   has_many :schedules
   has_many :reservations
+  has_many :ranks
 
   def self.looks(search)
     if search

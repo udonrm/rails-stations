@@ -1,0 +1,21 @@
+<div class="container text-center mt-5">
+    <div class="row justify-content-center">
+        <h1>人気作品ランキング</h1>
+        <%= "最終更新日:#{Date.today}" %>
+        <table class = "table">
+            <thead>
+                <tr class = "table-primary">
+                    <th>映画タイトル</th>
+                    <th>予約数</th>
+                    <th>作品詳細</th>
+                </tr>
+            </thead>
+            <% @latest_ranking.each do |ranking|%>
+                <tr>
+                    <td><%= ranking.movie.name %></td>
+                    <td><%= ranking.reservation_count %></td>
+                    <td><%= link_to 'URL', movies_path(name: ranking.movie.name) %></td>
+                </tr>
+            <% end %>
+    </div>
+</div>

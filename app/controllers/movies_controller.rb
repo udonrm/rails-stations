@@ -1,7 +1,8 @@
 class MoviesController < ApplicationController
   def index
     @movies = Movie.all
-
+    # ランキングページからの遷移
+    @movies = @movies.where(name: params[:name]) if params[:name].present?
     # キーワードでの絞り込み
     @movies = @movies.looks(params[:keyword]) if params[:keyword].present?
 
