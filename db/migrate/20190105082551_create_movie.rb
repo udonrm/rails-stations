@@ -5,7 +5,7 @@ class CreateMovie < ActiveRecord::Migration[6.1]
       t.string 'year', limit: 45, comment: '公開年'
       t.text 'description', comment: '映画の説明文'
       t.string 'image_url', limit: 150, comment: '映画のポスター画像が格納されているURL'
-      t.boolean 'is_showing', null: false, comment: '上映中かどうか' t.references :movie, null: false, foreign_key: true
+      t.boolean 'is_showing', null: false, comment: '上映中かどうか'
       t.timestamps
     end
   end

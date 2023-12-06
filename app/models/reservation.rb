@@ -15,14 +15,14 @@ class Reservation < ApplicationRecord
 
   def self.calculate_ranking
     results = Reservation.joins(:movie)
-                .where(date: Date.today - 30 .. Date.today)
-                .group('movies.name')
-                .select('movies.name, COUNT(*) as reservation_count')
-                .order('reservation_count DESC')
-    
+                         .where(date: Date.today - 30..Date.today)
+                         .group('movies.name')
+                         .select('movies.name, COUNT(*) as reservation_count')
+                         .order('reservation_count DESC')
+
     results.each do |result|
       Rank.create!(
-        movie_id: Movie.find_by(name: result.name).id,    
+        movie_id: Movie.find_by(name: result.name).id,
         rank_date: Date.today,
         reservation_count: result.reservation_count
       )

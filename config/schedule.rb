@@ -24,15 +24,19 @@
 # end
 
 set :output, 'log/cron.log'
-set :environment, "development"
+set :environment, 'development'
 
-env :PATH, ENV['PATH'] 
-env :GEM_HOME, ENV['GEM_HOME']
+env :PATH, ENV.fetch('PATH', nil)
+env :GEM_HOME, ENV.fetch('GEM_HOME', nil)
 
 every 1.day, at: '7:00 pm' do
-    runner "Reservation.reminder_email"
+    runner 'Reservation.reminder_email'
 end
 
 every 1.day, at: '0:00 am' do
-    runner "Reservation.calculate_ranking"
+    runner 'Reservation.calculate_ranking'
 end
+
+# every 1.minutes do
+#     runner "Reservation.calculate_ranking"
+# end
